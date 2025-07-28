@@ -1,0 +1,13 @@
+.Task {
+  :global(.ant-collapse-item) {
+    :global(.ant-collapse-header) {
+      @apply p-0;
+    }
+  }
+
+  :global(.ant-collapse-content) {
+    :global(.ant-collapse-content-box) {
+      @apply p-0;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.SubjectFilters {
+  @apply w-full flex gap-4 flex-wrap;
+  label {
+    &:first-child {
+      @apply border-gray1 border;
+    }
+
+    @apply border-gray1 border rounded-lg flex-1 min-w-80 h-12 md:h-16 items-center justify-center flex;
+
+    &:before {
+      display: none !important;
+    }
+
+    span {
+      @apply text-base;
+    }
+  }
+}

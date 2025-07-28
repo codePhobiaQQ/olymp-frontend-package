@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+
+h2 {
+  @apply text-3xl md:text-4xl font-medium;
+}

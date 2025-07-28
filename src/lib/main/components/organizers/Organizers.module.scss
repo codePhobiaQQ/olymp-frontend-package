@@ -1,0 +1,37 @@
+.OrganizersSlider {
+  display: flex;
+  position: relative;
+  :global(.slick-track) {
+    display: flex;
+    @apply gap-1
+  }
+  :global(.slick-dots) {
+    @apply items-center w-full -top-8 h-5;
+    display: flex !important;
+
+    li {
+
+      & > div {
+        & > div {
+          @apply bg-primaryGray;
+        }
+      }
+
+      &:global(.slick-active) {
+          & > div {
+            div {
+              @apply bg-primary transition-colors;
+            }
+
+          }
+      }
+      display: flex;
+      flex: 1;
+      align-items: center;
+      margin: 0;
+      div {
+        box-sizing: border-box;
+      }
+    }
+  }
+}
