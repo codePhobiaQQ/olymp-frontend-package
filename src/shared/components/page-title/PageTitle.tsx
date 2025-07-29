@@ -1,11 +1,13 @@
 import { Typography } from 'antd'
+import cn from 'classnames'
 
 export const PageTitle = ({ text }: { text: string }) => {
   return (
-    <div className="border-pink border-b-2 pb-6">
-      <Typography.Title className="uppercase" level={2}>
-        {text}
-      </Typography.Title>
-    </div>
+    <Typography.Title
+      className={cn('gradient-text flex font-semibold text-3xl md:text-4xl')}
+      level={2}
+    >
+      {text}
+    </Typography.Title>
   )
 }

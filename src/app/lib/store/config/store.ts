@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { $api_wordpress } from '@shared/lib/api/api'
+import { $api_wordpress } from '@shared/api/api'
 import { authReducer } from '@lib/auth'
-import { wordpressApi } from '@shared/lib/api/rtkApi.ts'
-import { StateSchema } from '@app/store'
+import { wordpressApi } from '@shared/api/rtkApi'
+import { StateSchema } from './StateSchema'
+import { ThunkDispatch } from '@reduxjs/toolkit'
+import { AnyAction } from 'redux'
 
 export const store = configureStore<StateSchema>({
   reducer: {
@@ -23,4 +25,5 @@ export const store = configureStore<StateSchema>({
     }).concat([wordpressApi.middleware]),
 })
 
-export type AppDispatch = typeof store.dispatch
+type TypedDispatch<T> = ThunkDispatch<T, any, AnyAction>
+export type AppDispatch = TypedDispatch<StateSchema>

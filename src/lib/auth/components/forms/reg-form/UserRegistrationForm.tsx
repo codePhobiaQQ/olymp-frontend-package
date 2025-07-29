@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import cn from 'classnames'
 import { Form } from 'antd'
-import { Input } from '@shared/components/input/Input.tsx'
+import { Input } from '@shared/components/input/Input'
 import { Button } from '@shared/components/button'
-import { useAppDispatch } from '@shared/lib/hooks/useAppDispatch.ts'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { userReg } from './../../../model/services/registration/user-reg'
 import { UserRegistrationProps } from '@lib/user/model/types/user'
 import { useNavigate } from 'react-router-dom'
+import { FormTitle } from './../../shared/form-title'
 
 export type RegistrationFormProps = {
   className?: string
@@ -26,7 +27,13 @@ export const UserRegistrationForm: FC<RegistrationFormProps> = (props) => {
   }
 
   return (
-    <Form onFinish={registrationHandler} className={cn(className)} autoComplete="off">
+    <Form
+      onFinish={registrationHandler}
+      className={cn(className, 'flex flex-col gap-4 w-full')}
+      autoComplete="off"
+    >
+      <FormTitle title="Регистрация" />
+
       <Form.Item
         name="username"
         rules={[
@@ -64,7 +71,7 @@ export const UserRegistrationForm: FC<RegistrationFormProps> = (props) => {
         <Input type="password" labelProps={{ children: 'Повторите пароль' }} />
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item className="mt-4 flex justify-center">
         <Button type="primary" htmlType="submit">
           Зарегистрироваться
         </Button>

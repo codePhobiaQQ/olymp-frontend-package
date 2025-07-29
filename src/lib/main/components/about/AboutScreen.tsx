@@ -1,72 +1,115 @@
-import { Container } from '@app/components/layouts/Container'
-import { Button } from '@shared/components/button'
+import { Container } from '@/app/components/layouts/container'
 import cls from './About.module.scss'
-import LogoAnimal from '@public/svg/logo/logo-animal.svg?react'
-import ArrowSvg from '@public/svg/decore/arrow.svg?react'
-import AboutPallet from '@public/images/decore/about-pallet.png'
 import { Typography } from 'antd'
 import cn from 'classnames'
+import { MainPageData } from '@lib/main/model/types'
+import { useEffect, useRef } from 'react'
+import { animation } from '@shared/lib/animations'
+import { HtmlParse } from '@shared/lib/html-parse'
 
-export const AboutScreen = () => {
+export const AboutScreen = ({ data }: { data?: MainPageData['advantages'] }) => {
+  // -------------
+  // Animation
+  // -------------
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!containerRef.current) {
+      return
+    }
+
+    // Section Title
+    // animation.text.fadeIn(containerRef.current.querySelector('.section-title'), {
+    //   scrollTrigger: {
+    //     start: 'top 80%',
+    //   },
+    // })
+
+    // Cards Animation
+    animation.geometry.fadeIn(containerRef.current.querySelectorAll('.advantage-card'), {
+      scrollTrigger: {
+        start: 'top 65%',
+      },
+      onEachElement: (el: HTMLElement) => {
+        animation.numbers.increase(el.querySelector('.numb'), {
+          delay: 0.3,
+        })
+        animation.text.fadeIn(el.querySelector('.description'), { delay: 0.6 })
+      },
+    })
+  }, [])
+  // ---------------------
+
+  // const buttonHandler = () => {
+  //   const target = document.getElementById('winners-screen')
+  //   if (target) {
+  //     target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  //   }
+  // }
+
+  let content
+
+  if (data?.sectionTitle && data?.advantages?.length) {
+    content = (
+      <>
+        <Typography.Title className="gradient-text section-title text-center" level={2}>
+          О портале
+        </Typography.Title>
+
+        {/* TODO: move content html to wordpress */}
+        {/* <HtmlParse stringifyHTML={data?.sectionTitle} /> */}
+        <div style={{ maxWidth: '800px' }} className="mt-10 flex flex-col gap-5">
+          <p className="text-center text-lg md:text-xl font-normal">
+            Современное интернет пространство изобилует предложениями с бесплатными курсами,
+            олимпиадами и конкурсами, не имеющими реальной ценности для абитуриентов при
+            поступлении.
+          </p>
+
+          <p className="text-center text-lg md:text-xl font-normal">
+            Данную проблему выбора помогает решать портал v-olymp.ru, на котором вы найдете:
+          </p>
+        </div>
+        {/* ----------------------------------- */}
+
+        {/* ----------------------------------- */}
+        {/* TODO: add card tags from the server */}
+        <div className="relative z-10 mt-20 flex w-full flex-wrap items-stretch justify-between gap-16 md:gap-10">
+          {data.advantages?.map((adv, index) => {
+            return (
+              <div key={index} className="advantage-card flex items-center min-w-80 flex-1 flex-col">
+                {/* Tag */}
+                <span className="px-4 flex items-center justify-center rounded-lg bg-accentBlue text-secondary">
+                  архив задач
+                </span>
+
+                {/* Title */}
+                <Typography.Title
+                  level={5}
+                  className="mt-8 numb text-center text-3xl font-semibold italic text-primary md:text-4xl"
+                >
+                  {adv.title} + Заданий
+                </Typography.Title>
+
+                {/* Description */}
+                <Typography.Paragraph className="description font-normal text-base text-center mt-4">
+                  <HtmlParse stringifyHTML={adv.description} />
+                </Typography.Paragraph>
+              </div>
+            )
+          })}
+        </div>
+      </>
+    )
+  }
+
   return (
     <section
+      ref={containerRef}
       id="about"
-      style={{ background: `url'${AboutPallet}' no-repeat center center / cover` }}
-      className={cn(cls.About, 'section-padding bg-section1')}
+      className={cn('about-screen relative', cls.About, 'section-padding')}
     >
-      <Container containerInnerClassname="flex flex-col items-center gap-20">
-        <div className="flex flex-col items-center gap-2">
-          <LogoAnimal className="h-24 w-40" />
-          <p className="flex gap-2 text-center text-xl font-medium text-green-700">
-            <span className="italic">Почему</span>
-            <span className="font-semibold">v-olymp?</span>
-          </p>
-        </div>
-
-        <Typography.Text rootClassName="max-w-4xl text-3xl text-center">
-          Мы помогаем школьникам конвертировать свои знания в заслуженную награду (в том числе
-          льготы при поступлении в ВУЗ)
-        </Typography.Text>
-
-        <div className="justify-beetwen flex flex-wrap items-stretch gap-4">
-          <div className="flex min-w-80 flex-1 flex-col gap-10 rounded-lg bg-white p-5 shadow-xl">
-            <h4 className="text-4xl font-semibold italic text-primary md:text-6xl">{'>400'}</h4>
-            <p className="font-medium text-primary">
-              заданий олимпиад прошлых лет с решениями для подготовки будущих участников
-            </p>
-          </div>
-
-          <div className="flex min-w-80 flex-1 flex-col gap-10 rounded-lg bg-white p-5 shadow-xl">
-            <h4 className="text-4xl font-semibold italic text-primary md:text-6xl">6</h4>
-            <p className="font-medium text-primary">
-              олимпиад, входящих в перечень минобрнауки, призерам которых доступны льготы при
-              поступлении в высшие учебные заведения
-            </p>
-          </div>
-
-          <div className="flex min-w-80 flex-1 flex-col gap-10 rounded-lg bg-white p-5 shadow-xl">
-            <h4 className="text-4xl font-semibold italic text-primary md:text-6xl">19</h4>
-            <p className="font-medium text-primary">
-              детально проработанных бесплатных онлайн-курсов по предметам технического и
-              гуманитарного профиля
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center justify-center gap-6">
-          <p className="max-w-screen-sm text-center text-xl">
-            Узнать подробнее о призах и льготах можно в соответствующем разделе сайта
-          </p>
-          <div>
-            <Button
-              href="/"
-              className="h-10 min-w-80 text-lg"
-              icon={<ArrowSvg className="h-3 w-3 fill-current" />}
-            >
-              Перейти
-            </Button>
-          </div>
-        </div>
+      <Container style={{ zIndex: 2 }} containerInnerClassname="flex flex-col items-center">
+        {content}
       </Container>
     </section>
   )

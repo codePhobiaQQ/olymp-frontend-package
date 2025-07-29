@@ -1,0 +1,35 @@
+$br: 10px;
+
+.Segment {
+  border-radius: $br;
+  border: 1px solid #d9d9d9;
+  overflow: hidden;
+
+  :global(.ant-segmented-group) {
+    border-radius: $br;
+  }
+
+  :global(.ant-segmented-item) {
+    border-radius: calc($br - 2px);
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .ant-segmented-item-motion {
+    color: #fff !important;
+  }
+
+  :global(.ant-segmented-item-selected) {
+    background: #2e2ee8;
+    color: #fff;
+    box-shadow: none;
+  }
+
+  :global(.ant-segmented-thumb) {
+    border-radius: $br;
+    background: #2e2ee8 !important;
+    mix-blend-mode: multiply;
+    color: #fff !important;
+  }
+}

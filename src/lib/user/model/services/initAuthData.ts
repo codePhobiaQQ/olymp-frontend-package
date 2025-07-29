@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { UserSchema } from '../types/user.ts'
-import { USER_LOCALSTORAGE_KEY } from '../consts/user.ts'
-import { ThunkConfig } from '@app/store'
+import { UserSchema } from '../types/user'
+import { USER_LOCALSTORAGE_KEY } from '../consts/user'
 import { jwtDecode } from 'jwt-decode'
+import { ThunkConfig } from '@app/lib/store'
 
 export const initAuthData = createAsyncThunk<UserSchema, void, ThunkConfig<string>>(
   'user/initAuthData',

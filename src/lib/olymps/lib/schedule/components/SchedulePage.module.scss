@@ -1,0 +1,58 @@
+.ScheduleTable {
+  @apply w-full overflow-x-auto max-w-full table-auto block rounded-xl;
+
+  thead {
+    tr {
+      &:nth-child(2n + 1) {
+        @apply bg-secondary;
+      }
+    }
+  }
+
+  tr {
+    &:nth-child(2n) {
+      @apply bg-secondary;
+    }
+    &:nth-child(2n + 1) {
+      @apply bg-accentPink bg-opacity-30;
+    }
+  }
+
+  td, th {
+    box-sizing: border-box;
+    @apply p-5;
+
+    @media screen and (max-width: 768px)  {
+      @apply pt-5 whitespace-nowrap;
+    }
+
+    &:nth-child(1) {
+      width: 50%;
+      flex: 1;
+    }
+    &:nth-child(2) {
+      width: 50%;
+    }
+    &:nth-child(3) {
+      //flex-grow: 1;
+    }
+  }
+
+  th {
+    text-align: left;
+    @apply font-medium text-xl;
+
+    @media screen and (max-width: 768px)  {
+      @apply font-medium text-lg;
+    }
+  }
+
+  td {
+    text-align: left;
+    @apply font-normal text-base;
+
+    @media screen and (max-width: 768px)  {
+      @apply font-medium text-sm;
+    }
+  }
+}

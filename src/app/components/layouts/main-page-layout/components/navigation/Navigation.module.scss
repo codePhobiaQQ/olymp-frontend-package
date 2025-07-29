@@ -1,0 +1,19 @@
+.Hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: flex-end;
+  @apply gap-2;
+
+  span {
+    @apply bg-primary h-0.5;
+  }
+
+  span:nth-child(1) {
+    @apply w-10;
+  }
+  span:nth-child(2) {
+    @apply w-5;
+  }
+}
+

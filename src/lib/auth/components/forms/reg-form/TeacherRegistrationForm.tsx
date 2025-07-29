@@ -3,7 +3,7 @@ import cn from 'classnames'
 import { Form } from 'antd'
 import { Input } from '@shared/components/input/Input.tsx'
 import { Button } from '@shared/components/button'
-import { useAppDispatch } from '@shared/lib/hooks/useAppDispatch.ts'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch.ts'
 import { UserLoginProps } from '@lib/user'
 import { login } from '@lib/auth/model/services/login.ts'
 
@@ -20,7 +20,11 @@ export const TeacherRegistrationForm: FC<RegistrationFormProps> = (props) => {
   }
 
   return (
-    <Form onFinish={registrationHandler} className={cn(className)} autoComplete="off">
+    <Form
+      onFinish={registrationHandler}
+      className={cn(className, 'flex flex-col gap-4')}
+      autoComplete="off"
+    >
       <Form.Item
         name="username"
         rules={[

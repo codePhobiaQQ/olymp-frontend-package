@@ -7,6 +7,8 @@ export type OfficialInformation = Partial<{
   olymp_dates_venues_final_stage: string
 }>
 
+export type OlympInfo = unknown
+
 export type OlympData = {
   ID: string
   name: string

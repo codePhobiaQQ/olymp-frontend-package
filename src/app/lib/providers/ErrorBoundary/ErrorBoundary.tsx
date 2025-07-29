@@ -1,22 +1,21 @@
 import { Component, ErrorInfo, ReactNode, Suspense } from 'react'
 
 interface ErrorBoundaryProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 interface ErrorBoundaryState {
-  hasError: boolean;
+  hasError: boolean
 }
 
-export class ErrorBoundary extends Component<ErrorBoundaryProps,
-  ErrorBoundaryState> {
-
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = { hasError: false }
   }
 
   static getDerivedStateFromError(error: Error) {
+    console.log(error)
     return { hasError: true }
   }
 
@@ -30,7 +29,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps,
 
     if (hasError) {
       return (
-        <Suspense fallback='Loading...'>
+        <Suspense fallback="Loading...">
           <h1>Something wrong.</h1>
         </Suspense>
       )

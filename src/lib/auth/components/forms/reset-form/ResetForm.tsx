@@ -1,12 +1,12 @@
 import { FC } from 'react'
-import cls from './ResetForm.module.scss'
 import cn from 'classnames'
 import { Form } from 'antd'
-import { Input } from '@shared/components/input/Input.tsx'
+import { Input } from '@shared/components/input/Input'
 import { Button } from '@shared/components/button'
 import { UserLoginProps } from '@lib/user'
-import { login } from '@lib/auth/model/services/login.ts'
-import { useAppDispatch } from '@shared/lib/hooks/useAppDispatch.ts'
+import { login } from './../../../model/services/login'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import { FormTitle } from '@lib/auth/components/shared/form-title.tsx'
 
 export type ResetFormProps = {
   className?: string
@@ -21,7 +21,13 @@ export const ResetForm: FC<ResetFormProps> = (props) => {
   }
 
   return (
-    <Form onFinish={loginHandler} className={cn(className, cls.ResetForm)} autoComplete="off">
+    <Form
+      onFinish={loginHandler}
+      className={cn(className, 'flex flex-col gap-4 w-full')}
+      autoComplete="off"
+    >
+      <FormTitle title="Восстановить пароль" />
+
       <Form.Item
         name="username"
         rules={[
@@ -35,7 +41,7 @@ export const ResetForm: FC<ResetFormProps> = (props) => {
         <Input type="email" labelProps={{ children: 'E-mail' }} />
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item className="mt-4 flex justify-center">
         <Button type="primary" htmlType="submit">
           Сбросить пароль
         </Button>

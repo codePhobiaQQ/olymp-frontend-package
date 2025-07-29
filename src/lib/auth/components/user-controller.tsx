@@ -1,13 +1,13 @@
 import { FC } from 'react'
-import UserSvg from '@public/svg/header/user.svg?react'
+import UserSvg from '/public/svg/header/user.svg?react'
 import cn from 'classnames'
 import { Dropdown } from '@shared/components/dropdown'
 import { useSelector } from 'react-redux'
 import { getIsUserLogin } from '../model/selectors/auth'
-import { useAppDispatch } from '@shared/lib/hooks/useAppDispatch'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { authActions } from '@lib/auth'
 import { loginUserActions } from '../consts/loginUserActions'
-import { Button } from '@shared/components/button'
+import { LoginOutlined } from '@ant-design/icons'
 
 export type UserControllerProps = {
   className?: string
@@ -28,7 +28,7 @@ export const UserController: FC<UserControllerProps> = (props) => {
         <div
           className={cn(
             className,
-            'pointer flex h-9 w-9 items-center justify-center rounded-full bg-white'
+            'flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white'
           )}
         >
           <UserSvg className="h-5 w-5 stroke-current" />
@@ -42,16 +42,14 @@ export const UserController: FC<UserControllerProps> = (props) => {
   }
 
   return (
-    <Button onClick={openPopupHandler}>Войти</Button>
-
-    // <div
-    //   onClick={openPopupHandler}
-    //   className={cn(
-    //     className,
-    //     'pointer flex h-9 w-9 items-center justify-center rounded-full bg-white'
-    //   )}
-    // >
-    //   <UserSvg className="h-5 w-5 stroke-current" />
-    // </div>
+    <div
+      onClick={openPopupHandler}
+      className={cn(
+        className,
+        'flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white'
+      )}
+    >
+      <LoginOutlined className="text-xl" />
+    </div>
   )
 }

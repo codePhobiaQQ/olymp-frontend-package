@@ -1,7 +1,7 @@
 import type { MenuProps } from 'antd'
 import { logout } from './../model/services/logout.ts'
 import { Link } from 'react-router-dom'
-import { UseAppDispatch } from '@shared/lib/hooks/useAppDispatch'
+import { UseAppDispatch } from '@shared/hooks/useAppDispatch'
 
 export const loginUserActions = ({
   dispatch,

@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import PointerSvg from '@public/svg/decore/pointer.svg?react'
+import PointerSvg from '/public/svg/decore/pointer.svg?react'
 
 type PointerVariant = 'blue' | 'white-transparent'
 

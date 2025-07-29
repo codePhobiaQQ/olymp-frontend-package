@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ThunkConfig } from '@app/store'
 import { AxiosError } from 'axios'
 import { UserApproveProps } from '@lib/user/model/types/user'
 import { notification } from 'antd'
-import { useErrorText } from '@shared/lib/hooks/useErrorText'
+import { useErrorText } from '@shared/hooks/useErrorText'
 import { initAuthData, USER_LOCALSTORAGE_KEY } from '@lib/user'
+import { ThunkConfig } from '@app/lib/store'
 
 export const approve = createAsyncThunk<void, UserApproveProps, ThunkConfig<string>>(
   'auth/approve',

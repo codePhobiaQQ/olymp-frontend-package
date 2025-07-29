@@ -1,25 +1,26 @@
 import { FC } from 'react'
-import cls from './LoginForm.module.scss'
 import cn from 'classnames'
 import { Form } from 'antd'
-import { Input } from '@shared/components/input/Input.tsx'
+import { Input } from '@shared/components/input/Input'
 import { Button } from '@shared/components/button'
-import { useAppDispatch } from '@shared/lib/hooks/useAppDispatch.ts'
-import { login } from '@lib/auth/model/services/login.ts'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import { login } from '@lib/auth/model/services/login'
 import { UserLoginProps } from '@lib/user'
 import { useNavigate } from 'react-router-dom'
+import { FormTitle } from './../../shared/form-title'
 
 export type LoginFormProps = {
   className?: string
 }
 
-const LoginForm: FC<LoginFormProps> = (props) => {
+export const LoginForm: FC<LoginFormProps> = (props) => {
   const { className } = props
   const dispatch = useAppDispatch()
   let navigate = useNavigate()
 
   const loginHandler = (fieldsValue: UserLoginProps) => {
     console.log('fieldsValue', fieldsValue)
+
     dispatch(login(fieldsValue)).then((res) => {
       if (typeof res.payload !== 'string') {
         return navigate('/personal-account')
@@ -28,7 +29,13 @@ const LoginForm: FC<LoginFormProps> = (props) => {
   }
 
   return (
-    <Form onFinish={loginHandler} className={cn(className, cls.LoginForm)} autoComplete="off">
+    <Form
+      onFinish={loginHandler}
+      className={cn(className, 'flex flex-col gap-4 w-full')}
+      autoComplete="off"
+    >
+      <FormTitle title="Вход в аккаунт" />
+
       <Form.Item
         name="username"
         rules={[
@@ -46,7 +53,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         <Input type="password" labelProps={{ children: 'Пароль' }} />
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item className="mt-4 flex justify-center">
         <Button type="primary" htmlType="submit">
           Войти
         </Button>
@@ -54,5 +61,3 @@ const LoginForm: FC<LoginFormProps> = (props) => {
     </Form>
   )
 }
-
-export default LoginForm

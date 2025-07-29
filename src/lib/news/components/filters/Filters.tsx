@@ -1,47 +1,24 @@
 import { Button, Checkbox, Typography } from 'antd'
-import cls from './Filters.module.scss'
 import type { GetProp } from 'antd'
-import { FilterI } from './../../model/types'
 import { Pointer } from '@shared/components/pointer'
 import cn from 'classnames'
-import { ALL_CATEGORIES_VALUE, selected_news_categories } from './../../model/provider'
-import { useAppDispatch } from '@shared/lib/hooks/useAppDispatch'
-import { changeNewsCategory } from './../../model/services/changeNewsCategory'
+import {
+  ALL_CATEGORIES_VALUE,
+  news_categories,
+  selected_news_categories,
+} from './../../model/provider'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import { setNewsCategory } from '../../model/services/set-news-category.ts'
 
 export const Filters = () => {
   const dispatch = useAppDispatch()
 
-  const filters: FilterI[] = [
-    // added by frontend
-    {
-      olymp_name: 'Все олимпиады',
-      slug: ALL_CATEGORIES_VALUE,
-    },
-    // -----------------
-    {
-      olymp_name: 'Криптография',
-      slug: 'cryptography',
-    },
-    {
-      olymp_name: 'Информатика и компьютерная безопасность',
-      slug: 'infoDefence',
-    },
-    {
-      olymp_name: 'Иностранный язык',
-      slug: 'foreignLanguage',
-    },
-    {
-      olymp_name: 'Математика',
-      slug: 'math',
-    },
-  ]
-
   const onChange: GetProp<typeof Checkbox.Group, 'onChange'> = (chosenCategories) => {
+    if (!news_categories.value?.length) return
     dispatch(
-      changeNewsCategory({
+      setNewsCategory({
         categories: chosenCategories as string[],
-        // Without ALL_CATEGORY
-        allCategoriesCount: filters.length - 1,
+        allCategoriesCount: news_categories.value.length,
       })
     )
   }
@@ -54,31 +31,46 @@ export const Filters = () => {
     selected_news_categories.value?.length === 1 &&
     selected_news_categories.value?.[0] === ALL_CATEGORIES_VALUE
 
-  return (
-    <div id="news-filters" className={cn('sider-menu', cls.Filters)}>
-      <Checkbox.Group
-        className="flex flex-col gap-3"
-        value={selected_news_categories.value}
-        onChange={onChange}
-      >
-        {filters.map((filter) => {
-          return (
-            <Checkbox rootClassName={cn(cls.FilterItem)} key={filter.slug} value={filter.slug}>
-              <Typography.Text>{filter.olymp_name}</Typography.Text>
-            </Checkbox>
-          )
-        })}
-      </Checkbox.Group>
+  let content
+  if (news_categories.value?.length) {
+    content = (
+      <>
+        <Checkbox.Group
+          className="flex flex-col gap-3"
+          value={selected_news_categories.value}
+          onChange={onChange}
+        >
+          {[
+            {
+              name: 'Все олимпиады',
+              slug: ALL_CATEGORIES_VALUE,
+            },
+            ...news_categories.value,
+          ]?.map((filter) => {
+            return (
+              <Checkbox key={filter.slug} value={filter.slug}>
+                <Typography.Text>{filter.name}</Typography.Text>
+              </Checkbox>
+            )
+          })}
+        </Checkbox.Group>
 
-      <Button
-        disabled={isResetDisable}
-        onClick={resetHandler}
-        className="flex items-center justify-center bg-accentBlue text-secondary"
-        iconPosition="end"
-        icon={<Pointer variant="white-transparent" className="h-4 w-4" />}
-      >
-        Сбросить
-      </Button>
+        <Button
+          disabled={isResetDisable}
+          onClick={resetHandler}
+          className="mt-10 w-40 flex items-center justify-center bg-accentBlue text-secondary"
+          iconPosition="end"
+          icon={<Pointer variant="white-transparent" className="h-4 w-4" />}
+        >
+          Сбросить
+        </Button>
+      </>
+    )
+  }
+
+  return (
+    <div id="news-filters" className={cn('sider-menu')}>
+      {content}
     </div>
   )
 }

@@ -1,0 +1,9 @@
+.ProfileForm {}
+
+.BirtDate {
+  position: relative;
+  :global(.ant-picker) {
+    width: 100%;
+    background-color: transparent;
+  }
+}

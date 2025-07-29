@@ -1,6 +1,6 @@
 import { activeSegment, olymp, SEGMENT_URI_KEY, SegmentType } from './../details-page/provider'
 import { effect } from '@preact/signals-react'
-import { setUri } from '@shared/lib/utils'
+import { setUri } from '@shared/utils'
 
 export const init = () => {
   const currentSearchParams = new URLSearchParams(window.location.search)

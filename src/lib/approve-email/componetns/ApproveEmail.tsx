@@ -1,7 +1,7 @@
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { notification } from 'antd'
-import { useAppDispatch } from '@shared/lib/hooks/useAppDispatch'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { approve } from '@lib/auth'
 
 export const ApproveEmail = () => {

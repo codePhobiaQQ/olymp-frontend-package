@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ThunkConfig } from '@app/store'
 import { initAuthData, UserLoginProps } from '@lib/user'
-import axios, { AxiosError } from 'axios'
-import { UserSchema } from '@lib/user/model/types/user.ts'
-import { USER_LOCALSTORAGE_KEY } from '@lib/user/model/consts/user.ts'
+import axios from 'axios'
+import { UserSchema } from '@lib/user/model/types/user'
+import { USER_LOCALSTORAGE_KEY } from '@lib/user/model/consts/user'
 import { notification } from 'antd'
-import { useErrorText } from '@shared/lib/hooks/useErrorText.ts'
+import { useErrorText } from '@shared/hooks/useErrorText'
+import { ThunkConfig } from '@app/lib/store'
 
 export const login = createAsyncThunk<UserSchema, UserLoginProps, ThunkConfig<string>>(
   'auth/login',
@@ -14,15 +14,10 @@ export const login = createAsyncThunk<UserSchema, UserLoginProps, ThunkConfig<st
 
     try {
       const { token } = await axios
-        .post<{ token: string }>('http://localhost:9090/wp-json/jwt-auth/v1/token', authData)
+        .post<{ token: string }>(`${import.meta.env.VITE_BACKEND_URL}/wp-json/jwt-auth/v1/token`, authData)
         .then((res) => {
           console.log(res)
           return res.data
-        })
-        .catch((e: AxiosError) => {
-          console.log(e)
-          const errorMessage = (e.response?.data as any)?.['message']
-          throw new Error(errorMessage ?? 'Ошибка в данных')
         })
 
       // Wordpress Token
@@ -31,8 +26,16 @@ export const login = createAsyncThunk<UserSchema, UserLoginProps, ThunkConfig<st
       // @ts-ignore
       notification.success({ message: 'Авторизация успешно пройдена' })
 
-      dispatch(initAuthData())
+      const userData = await dispatch(initAuthData()).then((res) => {
+        if (typeof res.payload === 'string' || !res.payload) {
+          return rejectWithValue('Ошибка во время получения данных пользователя')
+        }
+        return res.payload
+      })
+
+      return userData
     } catch (e: any) {
+      console.log('e', e)
       const message = useErrorText(e)
       return rejectWithValue(message)
     }

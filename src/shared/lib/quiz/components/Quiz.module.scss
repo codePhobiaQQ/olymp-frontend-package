@@ -1,0 +1,28 @@
+.Quiz {
+  :global(.ant-tabs-tab-icon) {
+    margin-inline-end: 0.25rem !important;
+  }
+
+  .Question {
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &.fullScreen {
+      height: 65vh !important;
+    }
+
+    &::-webkit-scrollbar {
+      @apply w-2;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-accentPurple;
+      border-radius: 20px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply bg-gray-200;
+      border-radius: 20px !important;
+    }
+  }
+}

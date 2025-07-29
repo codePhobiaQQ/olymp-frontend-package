@@ -1,0 +1,7 @@
+.StepsCls {
+  :global(.ant-steps-item-title) {
+    position: absolute;
+    transform: translateY(calc(-100% - 20px));
+    margin: 0;
+  }
+}

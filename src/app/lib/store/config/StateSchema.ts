@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios'
 import { AuthSchema } from '@lib/auth'
-import { wordpressApi } from '@shared/lib/api/rtkApi.ts'
+import { wordpressApi } from '@shared/api/rtkApi.ts'
 
 export interface StateSchema {
   auth: AuthSchema
@@ -8,12 +8,10 @@ export interface StateSchema {
 }
 
 export type StateSchemaKey = keyof StateSchema
-export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>
 
 export interface ThunkExtraArg {
   api: AxiosInstance
   api_wordpress: AxiosInstance
-  // navigate?: (to: any, options?: NavigateOptions) => void
 }
 
 export interface ThunkConfig<T> {

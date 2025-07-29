@@ -29,17 +29,17 @@ const description = ({ text, transactionLink }: Pick<NotificationProps, 'text' |
 
 export const success = (props: NotificationProps) => {
   const { text, transactionLink } = props
-  notificationSignal.value?.success({ message: 'Success', description: description({ text, transactionLink }) })
+  notificationSignal.value?.success({ message: 'Успешно', description: description({ text, transactionLink }) })
 }
 
 export const warning = (props: NotificationProps) => {
   const { text, transactionLink } = props
-  notificationSignal.value?.warning({ message: 'Warning', description: description({ text, transactionLink }) })
+  notificationSignal.value?.warning({ message: 'Предупреждение', description: description({ text, transactionLink }) })
 }
 
 export const error = (props: NotificationProps) => {
   const { text, transactionLink } = props
-  notificationSignal.value?.error({ message: 'Error', description: description({ text, transactionLink }) })
+  notificationSignal.value?.error({ message: 'Ошибка', description: description({ text, transactionLink }) })
 }
 
 // TODO:

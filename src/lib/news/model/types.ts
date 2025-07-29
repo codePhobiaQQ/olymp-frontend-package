@@ -1,6 +1,6 @@
 export interface NewsPreviewItemI {
   id: string | number
-  olymp?: {
+  category?: {
     name: string
     slug: string
   }
@@ -11,7 +11,7 @@ export interface NewsPreviewItemI {
 
 export interface NewsItemI {
   id: string | number
-  olymp?: {
+  category?: {
     name: string
     slug: string
   }
@@ -21,6 +21,7 @@ export interface NewsItemI {
 }
 
 export interface FilterI {
-  olymp_name: string
+  id: number
+  name: string
   slug: string
 }

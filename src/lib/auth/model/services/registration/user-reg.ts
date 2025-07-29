@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ThunkConfig } from '@app/store'
-import { UserRegistrationProps, UserSchema } from '@lib/user/model/types/user.ts'
+import { UserRegistrationProps, UserSchema } from '@lib/user/model/types/user'
 import { notification } from 'antd'
-import { useErrorText } from '@shared/lib/hooks/useErrorText.ts'
+import { useErrorText } from '@shared/hooks/useErrorText'
 import { initAuthData, USER_LOCALSTORAGE_KEY } from '@lib/user'
+import { ThunkConfig } from '@app/lib/store'
 
 export const userReg = createAsyncThunk<UserSchema, UserRegistrationProps, ThunkConfig<string>>(
   'auth/user-reg',
@@ -25,7 +25,14 @@ export const userReg = createAsyncThunk<UserSchema, UserRegistrationProps, Thunk
       localStorage.setItem(USER_LOCALSTORAGE_KEY, token)
       notification.success({ message: 'Ваш аккаунт был успешно зарегистрирован' })
 
-      await dispatch(initAuthData())
+      const userData = await dispatch(initAuthData()).then((res) => {
+        if (typeof res.payload === 'string' || !res.payload) {
+          return rejectWithValue('Ошибка во время получения данных пользователя')
+        }
+        return res.payload
+      })
+
+      return userData
     } catch (e: any) {
       const message = useErrorText(e)
       return rejectWithValue(message)

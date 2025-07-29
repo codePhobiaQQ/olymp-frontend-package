@@ -14,6 +14,7 @@ export const getSelectProps = ({
   options,
   placeholder,
   maxTagCount: 'responsive',
+  allowClear: true
 })
 
 export const FilterWrapper = ({ children }: { children: ReactNode }) => {
@@ -23,7 +24,6 @@ export const FilterWrapper = ({ children }: { children: ReactNode }) => {
         components: {
           Select: {
             controlHeight: 45,
-            /* here is your component tokens */
           },
         },
       }}

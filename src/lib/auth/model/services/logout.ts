@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ThunkConfig } from '@app/store'
-import { UserLoginProps } from '@lib/user'
 
 import { USER_LOCALSTORAGE_KEY } from '@lib/user/model/consts/user.ts'
+import { ThunkConfig } from '@app/lib/store'
 
 export const logout = createAsyncThunk<void, void, ThunkConfig<string>>(
   'auth/logout',

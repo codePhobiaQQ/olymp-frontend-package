@@ -1,4 +1,4 @@
-import { Container } from './../layouts/Container'
+import { Container } from '../layouts/container'
 import { Typography } from 'antd'
 
 export const NotFoundPage = () => {

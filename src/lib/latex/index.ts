@@ -1,0 +1,1 @@
+export { prefixImgSrc } from './latex'

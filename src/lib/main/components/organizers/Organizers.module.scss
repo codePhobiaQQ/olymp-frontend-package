@@ -1,34 +1,41 @@
 .OrganizersSlider {
   display: flex;
   position: relative;
+
   :global(.slick-track) {
     display: flex;
     @apply gap-1
   }
+
   :global(.slick-dots) {
     @apply items-center w-full -top-8 h-5;
     display: flex !important;
 
     li {
+      button {
+        padding: 0;
+        height: 4px;
+        border: none;
+        @apply bg-gray-200 transition-colors;
+        width: 100%;
 
-      & > div {
-        & > div {
-          @apply bg-primaryGray;
+        &:before {
+          display: none;
         }
       }
 
       &:global(.slick-active) {
-          & > div {
-            div {
-              @apply bg-primary transition-colors;
-            }
-
-          }
+        button {
+          @apply bg-primary;
+        }
       }
+
+
       display: flex;
       flex: 1;
       align-items: center;
       margin: 0;
+
       div {
         box-sizing: border-box;
       }

@@ -1,0 +1,5 @@
+config:
+  added:
+    main:
+      - config/lib/olymps.yaml
+      - config/lib/messages.yaml

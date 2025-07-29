@@ -1,13 +1,38 @@
 h1, h2, h3, h4, h5, h6 {
   &.ant-typography {
     margin: 0;
-    line-height: 1.2em;
-    //font-weight: 500;
+    line-height: 1.3em;
+    font-family: 'monsterat', sans-serif;
+    font-weight: 500;
   }
 }
 
-h2 {
-  //&.ant-typography {
-  //  font-size: 2.5rem;
-  //}
+p.ant-typography, div.ant-typography, div.ant-typography div, p.ant-typography div, span.ant-typography, span.ant-typography div {
+  line-height: 1.3em;
+  font-family: 'monsterat', sans-serif;
+  font-weight: 400;
+}
+
+div.ant-typography, .ant-typography p {
+  margin-bottom: inherit;
+}
+
+.gradient-text {
+  background: linear-gradient(
+                  88.33deg,
+                  #7C3717 19.76%,
+                  rgba(92, 92, 161, 0.9) 63.74%,
+                  #070777 93.68%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Для поддержки в Firefox */
+  background-clip: text;
+  color: transparent;
+}
+
+h2.section-title {
+  @apply text-4xl;
+  font-weight: 600 !important;
 }

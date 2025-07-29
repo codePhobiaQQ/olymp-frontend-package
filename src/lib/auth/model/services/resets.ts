@@ -1,10 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ThunkConfig } from '@app/store'
 import { AxiosError } from 'axios'
 import { jwtDecode } from 'jwt-decode'
-import { UserResetProps, UserSchema } from '@lib/user/model/types/user.ts'
-
-import { USER_LOCALSTORAGE_KEY } from '@lib/user/model/consts/user.ts'
+import { UserResetProps, UserSchema } from '@lib/user/model/types/user'
+import { USER_LOCALSTORAGE_KEY } from '@lib/user/model/consts/user'
+import { ThunkConfig } from '@app/lib/store'
 
 export const reset = createAsyncThunk<UserSchema, UserResetProps, ThunkConfig<string>>(
   'auth/reset',

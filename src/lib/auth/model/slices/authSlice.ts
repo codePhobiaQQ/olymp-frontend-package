@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AuthSchema } from '../types/authSchema'
-import { UserSchema } from '@lib/user/model/types/user.ts'
 import { initAuthData } from '@lib/user'
 import { logout } from './../services/logout.ts'
-import { userReg } from './../services/registration/user-reg.ts'
+import { userReg } from './../services/registration/user-reg'
 import { login } from './../services/login'
 
 const initialState: AuthSchema = {
@@ -17,20 +16,14 @@ export const authSlice = createSlice({
     setPopupVisible: (state, action: PayloadAction<boolean>) => {
       state.authPopupOpen = action.payload
     },
-    setAuthData: (state, action: PayloadAction<UserSchema>) => {
-      state.authData = action.payload
-    },
-    setIsInit: (state, action: PayloadAction<boolean>) => {
-      state._inited = action.payload
-    },
   },
   extraReducers: (builder) => {
     builder
       // REGISTRATION USER
-      .addCase(login.fulfilled, (state: AuthSchema, action) => {
+      .addCase(login.fulfilled, (state: AuthSchema) => {
         state.authPopupOpen = false
       })
-      .addCase(userReg.fulfilled, (state: AuthSchema, action) => {
+      .addCase(userReg.fulfilled, (state: AuthSchema) => {
         state.authPopupOpen = false
       })
       // LOGOUT

@@ -1,8 +1,10 @@
+// Components
+export { Card } from './components/card'
+export { CardsLayout } from './components/layouts'
+export { OlympDetailsPage } from './components/details-page/olymp-details-page'
+
 // Types
-export type { OlympData } from '@lib/olymps/model/types'
-export { subjectsSlug } from '@lib/olymps/model/consts'
+export type { OlympData } from './model/types'
 
 // Services
-export { useGetOlymps, useGetOlympDetails } from '@lib/olymps/model/services'
-
-export { OlympDetailsPage } from '@lib/olymps/components/details-page/OlympDetailsPage.tsx'
+export { useGetOlymps, useGetOlympDetails } from './model/api'

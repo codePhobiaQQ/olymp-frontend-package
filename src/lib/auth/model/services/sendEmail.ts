@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ThunkConfig } from '@app/store'
 import { AxiosError } from 'axios'
 import { notification } from 'antd'
-import { useErrorText } from '@shared/lib/hooks/useErrorText.ts'
+import { useErrorText } from '@shared/hooks/useErrorText'
 import { getAuthData } from '@lib/auth'
+import { ThunkConfig } from '@app/lib/store'
 
 export const sendApprovalEmail = createAsyncThunk<void, void, ThunkConfig<string>>(
   'auth/sendApprovalEmail',
