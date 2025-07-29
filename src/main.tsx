@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './app'
+import { App } from './app'
 import { BrowserRouter } from 'react-router-dom'
 import { ErrorBoundary, NotificationProvider } from '@app/lib/providers'
 import { StoreProvider } from '@app/lib/store'

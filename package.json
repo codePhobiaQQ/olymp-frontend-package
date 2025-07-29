@@ -1,6 +1,6 @@
 {
   "name": "olymp-frontend",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
