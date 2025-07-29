@@ -7,21 +7,19 @@ import { StoreProvider } from '@app/lib/store'
 import { ConfigProvider } from 'antd'
 import { antdTheme } from '@app/lib/antd'
 
-export const app = () => {
-  return ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-      <ErrorBoundary>
-        <StoreProvider>
-          <BrowserRouter future={{ v7_startTransition: true }} basename="/">
-            <ConfigProvider theme={antdTheme}>
-              <NotificationProvider>
-                <App />
-              </NotificationProvider>
-            </ConfigProvider>
-          </BrowserRouter>
-        </StoreProvider>
-      </ErrorBoundary>
-    </React.StrictMode>
-  )
-}
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <ErrorBoundary>
+      <StoreProvider>
+        <BrowserRouter future={{ v7_startTransition: true }} basename="/">
+          <ConfigProvider theme={antdTheme}>
+            <NotificationProvider>
+              <App />
+            </NotificationProvider>
+          </ConfigProvider>
+        </BrowserRouter>
+      </StoreProvider>
+    </ErrorBoundary>
+  </React.StrictMode>,
+)
 

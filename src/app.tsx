@@ -1,5 +1,4 @@
 import { AuthProvider } from '@lib/auth'
-
 import { useSelector } from 'react-redux'
 import { getAuthInited } from '@lib/auth/model/selectors/auth'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
