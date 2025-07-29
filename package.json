@@ -1,6 +1,6 @@
 {
   "name": "olymp-frontend",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
@@ -21,7 +21,8 @@
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js"
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [

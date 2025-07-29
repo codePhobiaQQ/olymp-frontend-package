@@ -54,6 +54,7 @@ export default defineConfig({
     // Type declarations
     dts({
       insertTypesEntry: true,
+      tsconfigPath: path.resolve(__dirname, 'tsconfig.build.json'),
     }),
 
     // viteObfuscator({
